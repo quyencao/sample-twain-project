@@ -2,7 +2,8 @@ import aih
 import base64
 import json
 
-aih_client = aih.init(app_id="APP_ID", secret_key="SECRET_KEY")
+aih_client = aih.init(app_id="aihvZOQPeBWSCy97OyvrQrqXA",
+                      secret_key="CKlV23XWRneCGfcMO2n49g")
 
 
 def detect_face(event, context):
@@ -64,6 +65,7 @@ def start_training(event, context):
         # Create a JSON string
         api_exception_json = json.dumps(api_exception_obj)
         raise aih.LambdaException(api_exception_json)
+
 
 def get_models(event, context):
     try:
