@@ -2,8 +2,8 @@ import aih
 import base64
 import json
 
-aih_client = aih.init(app_id="aihvZOQPeBWSCy97OyvrQrqXA",
-                      secret_key="CKlV23XWRneCGfcMO2n49g")
+aih_client = aih.init(app_id="aihtCWBcHO0T-mlcO64s9vs-Q",
+                      secret_key="DNtZMrh0SJKzX1DGW19mwg")
 
 
 def detect_face(event, context):
