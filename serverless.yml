@@ -1,0 +1,86 @@
+runtime: python3.6
+
+functions:
+  sagemaker_face_list:
+    handler: handler.detect_face
+    events:
+      http:
+        path: sagemaker/faces
+        method: post
+        params:
+          - in: body
+            name: body
+            description:
+            schema:
+              file: base64encoded_text
+  sagemaker_image:
+    handler: handler.upload_faces
+    events:
+      http:
+        path: sagemaker/images
+        method: post
+        params:
+          - in: body
+            name: body
+            description: Send multiple image and fullname
+            schema:
+              fullname: string
+              files: [base64encoded_text]
+  start_training:
+    handler: handler.start_training
+    events:
+      http:
+        path: sagemaker/models
+        method: post
+        params:
+          - in: body
+            name: body
+            description: Object has an attribute is instance type
+            schema:
+              instance_type: <number>
+  list_models:
+    handler: handler.get_models
+    events:
+      http:
+        path: sagemaker/models
+        method: get
+  get_model:
+    handler: handler.get_model
+    events:
+      http:
+        path: sagemaker/models/{modelId}
+        method: get
+        params:
+          - in: path
+            name: modelId
+            description: ID of model
+            type: string
+  stop_training:
+    handler: handler.stop_training
+    events:
+      http:
+        path: sagemaker/models/{modelId}
+        method: delete
+        params:
+          - in: path
+            name: modelId
+            description: ID of model
+            type: string
+  check_untrain_images:
+    handler: handler.check_untrain_images
+    events:
+      http:
+        path: sagemaker/images/untrain
+        method: get
+  polly_speak:
+    handler: handler.polly_speak
+    events:
+      http:
+        path: polly/speak
+        method: post
+        params:
+          - in: body
+            name: body
+            description: Data sent to api requires a text field, this field is a string to convert to audio (mp3 file)
+            schema:
+              text: string
